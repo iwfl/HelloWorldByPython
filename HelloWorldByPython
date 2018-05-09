@@ -1,0 +1,203 @@
+print ("Hello World!This is HDN's First python file!")  #打印helloworld
+
+what_he_does=' plays '
+his_instrument='guitar'
+his_name='Robert Johnson'
+artist_intro=his_name+what_he_does+his_instrument
+
+print(artist_intro)    #打印并演示字符串相加
+
+word='a loooooooong word'
+num=12
+string='bang!'
+total=string*(len(word)-num)
+print(len(word))
+print(total)    #演示len函数
+
+phone_number='1370-939-4666'
+hiding_number=phone_number.replace(phone_number[:9],'*'*9)
+print(hiding_number)   #演示string中的replace函数及字符串位数
+
+def fahrenheit_converter(C):
+    fahrenheit=C*9/5+32
+    return str(fahrenheit)+'F'
+C2F=fahrenheit_converter(35)
+print(C2F)              #打印转换成str的数字
+
+def fahrenheit_converter2(C):
+    fahrenheit = C * 9/5 + 32
+    print(str(fahrenheit) + '°F')
+C2F=fahrenheit_converter2(35)
+print(C2F)         #演示算术操作及赋值、打印
+
+def gKg_converter(C):
+    gKg=C/1000
+    print(str(C)+"g = "+str(gKg)+" kg")
+    return
+g2Kg=gKg_converter(3500)
+
+print('   *','  * *',' * * *','   |  ',sep='\n')   #演示sep的用处，sep表示前述用，隔开字符串时，逗号插入什么动作。默认空
+
+file=open('C://Users/HDN/PycharmProjects/Helloworld/text.txt','w')
+file.write('Hello !! python world!')   #演示打开并创建文件
+
+def text_create(name,msg):
+    desktop_path='/Users/HDN/PycharmProjects/Helloworld/'
+    full_path=desktop_path+name+'.txt'
+    file=open(full_path,'w')
+    file.write(msg)
+    file.close()
+    print('Mission Accomplished!')
+    return
+text_create('hello','This is python write function who say hello to you!And Python is case sensitive...')
+#打开并创建文本文件，且写入特定信息。
+
+def text_filter(word,censored_word='lame',changed_word='Awesome'):
+    return word.replace(censored_word,changed_word)
+print(text_filter('Python is lame!'))
+#替换字符
+
+def censored_text_create(name,msg):
+    clean_msg=text_filter(msg)
+    text_create(name,clean_msg)
+    return
+censored_text_create('Try','lame!lame!Python is lame!')
+#按制定要求替换字符串
+
+password_list = ['*#*#','12345']
+def account_login():
+    password = input('Input your password:')
+    password_correct = password == password_list[-1]
+    password_reset = password == password_list[0]
+    if password_correct:
+        print('Login success!')
+    elif password_reset:
+        new_password = input('Enter your new password:')
+        password_list.append(new_password)
+        print('Your password has changed successfully!')
+        account_login()
+    else:
+        print('Wrong password or invalid input!')
+        account_login()
+    return
+account_login()
+
+count = 0
+while True:
+    print('Repeat this line at '+str(count)+' times !')
+    count=count+1
+    if count==5:
+        break
+print("No more prints!")
+#接受字符输入并检查字符是否符合要求，利用了if elif else语句
+
+
+import random     #此段使用随机数，需要import random库
+point1 = random.randrange(1,7)
+point2 = random.randrange(1,7)
+point3 = random.randrange(1,7)
+print(point1,point2,point3)
+
+
+import random
+def roll_dice(numbers=3, points=None):
+    print('<<<<< ROLL THE DICE! >>>>>')
+#    if points is None:
+    points = []
+    while numbers > 0:
+        point = random.randrange(1,7)
+        print(point)
+        points.append(point)
+        numbers = numbers -1
+    return points
+points_print=roll_dice()
+print(points_print,'+',points_print[0],points_print[1],points_print[2],'+',sum(points_print))
+#三个随机数，1<=point<7，学习random.randrange的用法
+
+fruit = ['pineapple','pear']
+fruit.insert(1,'grape')
+fruit.append('grape')
+print(fruit)
+fruit.remove('grape')
+print(fruit)
+fruit[0:0]=['Orange']
+print(fruit)
+print(fruit[1:4])
+#学习list列表的基本操作
+
+num_list=[5,1,3,8,5,3,9,2,12]
+print(sorted(num_list))
+print(sorted(num_list,reverse=True))
+#学习list列表的基本操作
+
+a=[]
+for i in range(1,11):
+    a.append(i)
+print('a=',a)
+b=[i for i in range(1,11)]    #推导式，效率比上一段高
+print('b=',b)
+
+import time   #以下代码可验证推导式的效率比标准for语句快多少，验证发现执行时间是前者的1/3
+a=[]
+t0=time.clock()
+print(t0)
+for i in range(1,2000000):
+    a.append(i)
+print(time.clock()-t0,'seconds process time')
+
+t0=time.clock()
+b=[i for i in range(1,2000000)]
+print(time.clock()-t0,"seconds process time")
+
+z=[zimu.lower() for zimu in 'xyzABCDEFGHIJKLMN']
+print(z)
+
+#字符过滤器，读取特定txt文本，并统计各单词次数。注意，gbk与utf-8的异同。
+#要读取非UTF-8编码的文本文件，需要给open()函数传入encoding参数，
+#例如，读取GBK编码的文件,f = open('/Users/michael/gbk.txt', 'r', encoding='gbk')
+#详情请看https://www.cnblogs.com/ymjyqsx/p/6554817.html
+
+path = 'C://Users/HDN/PycharmProjects/Helloworld/splittext.txt'
+with open(path,'r') as text:
+    words = text.read().split()
+    print(words)
+    for word in words:
+        print('{}-{} times'.format(word,words.count(word)))
+
+
+
+class CocaCola:
+    formula = ['caffeine','sugar','water','soda']
+    def drink(self,name):                     #注意，类中的方法，必须有self参数（可用其他名字，习惯用self），且排第一。
+        print(name + ' got Energy! Such as : ',self.formula)  #此处不加self则formula会报错为未定义。
+username = input('Input your name:')
+coke = CocaCola()
+coke.drink(username)
+
+#self的具体意义参看https://blog.csdn.net/ly_ysys629/article/details/54893185
+
+class CocaCola:
+    formula = ['caffeine','sugar','water','soda']
+    def __init__(self):                  #_init_()是自动执行的
+        for element in self.formula:
+            print('Coke has {}!'.format(element))
+    def drink(self):
+        print('Energy!')
+
+coke = CocaCola()
+
+class TestA:
+    attr = 1
+    def __init__(self):
+        self.attr = 42
+obj_a = TestA()
+print(obj_a.attr)
+
+import random
+def fake_gender():
+    gender = random.choice(['男','女','变性'])
+    print('gender is ',gender)
+fake_gender()
+
+#以上代码均来自《编程小白的第一本python入门书》，作者：侯爵，感谢！下一步开始根据csdn上的简介来做爬虫。
+#本helloworld到此结束。
